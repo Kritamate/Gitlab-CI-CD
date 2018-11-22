@@ -1,38 +1,12 @@
-stages:
-  - test
-  - build
-  - deploy
-
-cache:
-  paths:
-    - node_modules/
-
 test:
-  image: node:10-alpine
-  stage: test
-  before_script:
-    - npm install
   script:
-    - npm run test:coverage
-  coverage: '/^All files\s+\|\s+\d+\.*\d*\s+\|\s*(\d+\.*\d*)/'
-  artifacts:
-    paths:
-      - coverage/
+    - echo "Running testing script"
 
 build:docker:
-  stage: build
-  image: docker:latest
-  services:
-    - docker:dind
-  before_script:
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    - docker build --pull -t "$CI_REGISTRY_IMAGE" .
-    - docker push "$CI_REGISTRY_IMAGE"
-  only:
-    - master
+    - echo "Running build docker image script"
+    - exho "Running push docker image to registry script"
 
 deploy:prod:
-  stage: deploy
   script:
     - echo "Running deploy script"
