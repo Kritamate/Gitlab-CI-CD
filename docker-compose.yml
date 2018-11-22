@@ -1,0 +1,26 @@
+version: '3'
+services:
+  db:
+    image: postgres:10-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=pguser
+      - POSTGRES_PASSWORD=p@ssw0rd
+      - POSTGRES_DB=ci-prod
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/1-init.sql    
+    restart: always
+
+  app:
+    image: registry.gitlab.com/somprasongd/gitlab-ci-cd-demo
+    environment:
+      - DB_URI=postgres://pguser:p@ssw0rd@db/ci-prod
+    ports:
+      - 3001:3000
+    depends_on:
+      - db
+    restart: always
+
+volumes: 
+  pg-data:

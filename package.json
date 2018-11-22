@@ -1,0 +1,32 @@
+{
+  "name": "workshop-gitlab-ci",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest --runInBand --forceExit",
+    "test:unit": "jest ./tests/units",
+    "test:integration": "jest ./tests/integrations --runInBand --forceExit",
+    "test:coverage": "jest --coverage --runInBand --forceExit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/somprasongd/workshop-gitlab-ci.git"
+  },
+  "author": "Somprasong Damyos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/somprasongd/workshop-gitlab-ci/issues"
+  },
+  "homepage": "https://gitlab.com/somprasongd/workshop-gitlab-ci#readme",
+  "devDependencies": {
+    "jest": "^23.6.0",
+    "supertest": "^3.3.0"
+  },
+  "dependencies": {
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "pg-promise": "^8.5.2"
+  }
+}

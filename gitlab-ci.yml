@@ -1,0 +1,12 @@
+test: 
+ script:
+ -echo "Running testing script"
+
+ build:docker:
+  script:
+  - echo "Running build docker image script"
+  - echo "Running push docker image to registry script"
+
+deploy:prod:
+ script:
+  - echo "Running deploy script"
